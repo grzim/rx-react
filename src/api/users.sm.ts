@@ -8,22 +8,28 @@ export const getUsersServiceModel = (usersService: UserService) => {
   const postUsers = new Subject<unknown>();
   const serverPostResponse$ = postUsers.pipe(
     withLatestFrom(usersService.users$),
-    concatMap(([,users]) => post(users)),
-    share())
+    concatMap(([, users]) => post(users)),
+    share(),
+  );
 
   const serverFetchResponse$ = fetchUsers.pipe(
     concatMap(getUsers),
-    tap(users => usersService.setUsers.next(users)),
-    share()
-  )
+    tap((users) => usersService.setUsers.next(users)),
+    share(),
+  );
 
   return function useServiceModel() {
-    const [serverPostResponse, serverFetchResponse] = useSubscriptions(serverPostResponse$, serverFetchResponse$);
+    const [serverPostResponse, serverFetchResponse] = useSubscriptions(
+      serverPostResponse$,
+      serverFetchResponse$,
+    );
     return {
-      serverPostResponse, serverFetchResponse,
+      serverPostResponse,
+      serverFetchResponse,
       ...nextify({
-                fetchUsers, postUsers
-              })
-    }
-  }
-}
+        fetchUsers,
+        postUsers,
+      }),
+    };
+  };
+};

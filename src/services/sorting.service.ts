@@ -5,6 +5,6 @@ export const getSortingService = <T extends Record<string, unknown>>() => {
   const sortBy$ = setSortBy.asObservable();
   return {
     sortBy$,
-    setSortBy
-  }
-}
+    setSortBy,
+  };
+};

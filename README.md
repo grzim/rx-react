@@ -19,4 +19,3 @@ UI components subscribe to data streams from the UI ViewModels, ensuring they re
 ### Reactive Streams and Pure Functions
 
 Thanks to the reactive stream approach adopted in this application, every piece of infrastructure is treated as a pure function. This design choice ensures that the system will never go out of sync, as the state is managed in a predictable and transparent manner. Reactive streams simplify handling complex data dependencies, making it easier to maintain and extend the application. The pure function architecture contributes to a robust and error-resistant system, where side effects are minimized, and data flow is clean and understandable. This approach not only enhances the reliability of the application but also improves the developer experience by providing a clear and logical structure for managing data and state changes.
-
