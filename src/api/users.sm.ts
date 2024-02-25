@@ -3,7 +3,7 @@ import { concatMap, share, Subject, tap, withLatestFrom } from 'rxjs';
 import { getUsers, postUsers as post } from './users.api.ts';
 import { nextify, useSubscriptions } from '../core';
 
-export const getUsersServiceModel = (usersService: UserService) => {
+export const getUsersServerModel = (usersService: UserService) => {
   const fetchUsers = new Subject<unknown>();
   const postUsers = new Subject<unknown>();
   const serverPostResponse$ = postUsers.pipe(
@@ -18,7 +18,7 @@ export const getUsersServiceModel = (usersService: UserService) => {
     share(),
   );
 
-  return function useServiceModel() {
+  return function useServerModel() {
     const [serverPostResponse, serverFetchResponse] = useSubscriptions(
       serverPostResponse$,
       serverFetchResponse$,

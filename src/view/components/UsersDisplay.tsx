@@ -1,11 +1,11 @@
-import { UsersViewModel, useUsersServiceModel } from '../root';
+import { UsersViewModel, useUsersServerModel } from '../root';
 import { Button } from '@mui/material';
 
 export const UsersDisplay = ({
   users,
   deleteUser,
 }: Pick<UsersViewModel, 'users' | 'deleteUser'>) => {
-  const { postUsers, fetchUsers } = useUsersServiceModel();
+  const { postUsers, fetchUsers } = useUsersServerModel();
   return (
     <div>
       users:
